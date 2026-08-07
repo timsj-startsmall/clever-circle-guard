@@ -12,8 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedAppCallRouteImport } from './routes/_authenticated/app.call'
+import { Route as AuthenticatedAppChatRouteImport } from './routes/_authenticated/app.chat'
 import { Route as AuthenticatedAppDashboardRouteImport } from './routes/_authenticated/app.dashboard'
+import { Route as AuthenticatedAppLearnRouteImport } from './routes/_authenticated/app.learn'
 import { Route as AuthenticatedAppMessageRouteImport } from './routes/_authenticated/app.message'
+import { Route as AuthenticatedAppPaymentRouteImport } from './routes/_authenticated/app.payment'
 import { Route as AuthenticatedAppWebsiteRouteImport } from './routes/_authenticated/app.website'
 
 const IndexRoute = IndexRouteImport.update({
@@ -30,15 +34,35 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAppCallRoute = AuthenticatedAppCallRouteImport.update({
+  id: '/app/call',
+  path: '/app/call',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppChatRoute = AuthenticatedAppChatRouteImport.update({
+  id: '/app/chat',
+  path: '/app/chat',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAppDashboardRoute =
   AuthenticatedAppDashboardRouteImport.update({
     id: '/app/dashboard',
     path: '/app/dashboard',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAppLearnRoute = AuthenticatedAppLearnRouteImport.update({
+  id: '/app/learn',
+  path: '/app/learn',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAppMessageRoute = AuthenticatedAppMessageRouteImport.update({
   id: '/app/message',
   path: '/app/message',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppPaymentRoute = AuthenticatedAppPaymentRouteImport.update({
+  id: '/app/payment',
+  path: '/app/payment',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAppWebsiteRoute = AuthenticatedAppWebsiteRouteImport.update({
@@ -50,15 +74,23 @@ const AuthenticatedAppWebsiteRoute = AuthenticatedAppWebsiteRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/app/call': typeof AuthenticatedAppCallRoute
+  '/app/chat': typeof AuthenticatedAppChatRoute
   '/app/dashboard': typeof AuthenticatedAppDashboardRoute
+  '/app/learn': typeof AuthenticatedAppLearnRoute
   '/app/message': typeof AuthenticatedAppMessageRoute
+  '/app/payment': typeof AuthenticatedAppPaymentRoute
   '/app/website': typeof AuthenticatedAppWebsiteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/app/call': typeof AuthenticatedAppCallRoute
+  '/app/chat': typeof AuthenticatedAppChatRoute
   '/app/dashboard': typeof AuthenticatedAppDashboardRoute
+  '/app/learn': typeof AuthenticatedAppLearnRoute
   '/app/message': typeof AuthenticatedAppMessageRoute
+  '/app/payment': typeof AuthenticatedAppPaymentRoute
   '/app/website': typeof AuthenticatedAppWebsiteRoute
 }
 export interface FileRoutesById {
@@ -66,22 +98,48 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/app/call': typeof AuthenticatedAppCallRoute
+  '/_authenticated/app/chat': typeof AuthenticatedAppChatRoute
   '/_authenticated/app/dashboard': typeof AuthenticatedAppDashboardRoute
+  '/_authenticated/app/learn': typeof AuthenticatedAppLearnRoute
   '/_authenticated/app/message': typeof AuthenticatedAppMessageRoute
+  '/_authenticated/app/payment': typeof AuthenticatedAppPaymentRoute
   '/_authenticated/app/website': typeof AuthenticatedAppWebsiteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/app/dashboard' | '/app/message' | '/app/website'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/app/call'
+    | '/app/chat'
+    | '/app/dashboard'
+    | '/app/learn'
+    | '/app/message'
+    | '/app/payment'
+    | '/app/website'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/app/dashboard' | '/app/message' | '/app/website'
+  to:
+    | '/'
+    | '/auth'
+    | '/app/call'
+    | '/app/chat'
+    | '/app/dashboard'
+    | '/app/learn'
+    | '/app/message'
+    | '/app/payment'
+    | '/app/website'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/app/call'
+    | '/_authenticated/app/chat'
     | '/_authenticated/app/dashboard'
+    | '/_authenticated/app/learn'
     | '/_authenticated/app/message'
+    | '/_authenticated/app/payment'
     | '/_authenticated/app/website'
   fileRoutesById: FileRoutesById
 }
@@ -114,6 +172,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/app/call': {
+      id: '/_authenticated/app/call'
+      path: '/app/call'
+      fullPath: '/app/call'
+      preLoaderRoute: typeof AuthenticatedAppCallRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/app/chat': {
+      id: '/_authenticated/app/chat'
+      path: '/app/chat'
+      fullPath: '/app/chat'
+      preLoaderRoute: typeof AuthenticatedAppChatRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/app/dashboard': {
       id: '/_authenticated/app/dashboard'
       path: '/app/dashboard'
@@ -121,11 +193,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/app/learn': {
+      id: '/_authenticated/app/learn'
+      path: '/app/learn'
+      fullPath: '/app/learn'
+      preLoaderRoute: typeof AuthenticatedAppLearnRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/app/message': {
       id: '/_authenticated/app/message'
       path: '/app/message'
       fullPath: '/app/message'
       preLoaderRoute: typeof AuthenticatedAppMessageRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/app/payment': {
+      id: '/_authenticated/app/payment'
+      path: '/app/payment'
+      fullPath: '/app/payment'
+      preLoaderRoute: typeof AuthenticatedAppPaymentRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/app/website': {
@@ -139,14 +225,22 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAppCallRoute: typeof AuthenticatedAppCallRoute
+  AuthenticatedAppChatRoute: typeof AuthenticatedAppChatRoute
   AuthenticatedAppDashboardRoute: typeof AuthenticatedAppDashboardRoute
+  AuthenticatedAppLearnRoute: typeof AuthenticatedAppLearnRoute
   AuthenticatedAppMessageRoute: typeof AuthenticatedAppMessageRoute
+  AuthenticatedAppPaymentRoute: typeof AuthenticatedAppPaymentRoute
   AuthenticatedAppWebsiteRoute: typeof AuthenticatedAppWebsiteRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAppCallRoute: AuthenticatedAppCallRoute,
+  AuthenticatedAppChatRoute: AuthenticatedAppChatRoute,
   AuthenticatedAppDashboardRoute: AuthenticatedAppDashboardRoute,
+  AuthenticatedAppLearnRoute: AuthenticatedAppLearnRoute,
   AuthenticatedAppMessageRoute: AuthenticatedAppMessageRoute,
+  AuthenticatedAppPaymentRoute: AuthenticatedAppPaymentRoute,
   AuthenticatedAppWebsiteRoute: AuthenticatedAppWebsiteRoute,
 }
 
