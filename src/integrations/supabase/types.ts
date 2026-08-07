@@ -14,7 +14,108 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      checks: {
+        Row: {
+          created_at: string
+          details: Json
+          id: string
+          kind: Database["public"]["Enums"]["check_kind"]
+          risk: Database["public"]["Enums"]["risk_level"]
+          summary: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          details?: Json
+          id?: string
+          kind: Database["public"]["Enums"]["check_kind"]
+          risk: Database["public"]["Enums"]["risk_level"]
+          summary?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          details?: Json
+          id?: string
+          kind?: Database["public"]["Enums"]["check_kind"]
+          risk?: Database["public"]["Enums"]["risk_level"]
+          summary?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          dark_mode: boolean
+          display_name: string | null
+          high_contrast: boolean
+          id: string
+          large_text: boolean
+          read_aloud: boolean
+          role: Database["public"]["Enums"]["safe_role"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          dark_mode?: boolean
+          display_name?: string | null
+          high_contrast?: boolean
+          id: string
+          large_text?: boolean
+          read_aloud?: boolean
+          role?: Database["public"]["Enums"]["safe_role"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          dark_mode?: boolean
+          display_name?: string | null
+          high_contrast?: boolean
+          id?: string
+          large_text?: boolean
+          read_aloud?: boolean
+          role?: Database["public"]["Enums"]["safe_role"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      trusted_contacts: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          is_primary: boolean
+          name: string
+          phone: string | null
+          relationship: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          is_primary?: boolean
+          name: string
+          phone?: string | null
+          relationship?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          is_primary?: boolean
+          name?: string
+          phone?: string | null
+          relationship?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +124,9 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      check_kind: "message" | "website" | "call" | "payment"
+      risk_level: "low" | "medium" | "high"
+      safe_role: "protected" | "family"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +253,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      check_kind: ["message", "website", "call", "payment"],
+      risk_level: ["low", "medium", "high"],
+      safe_role: ["protected", "family"],
+    },
   },
 } as const
