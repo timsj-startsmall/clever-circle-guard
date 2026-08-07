@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { Phone, MessageCircle, UserPlus } from "lucide-react";
 import { AppShell, SoftCard } from "@/components/safe/app-shell";
-import { trustedContacts } from "@/lib/sample-data";
+import { sampleContacts } from "@/lib/sample-data";
 
 export const Route = createFileRoute("/_authenticated/app/trusted")({
   head: () => ({
@@ -20,11 +20,11 @@ function TrustedContacts() {
   return (
     <AppShell title="Ask someone I trust" subtitle="They're happy to help — that's why they're here">
       <div className="grid gap-3">
-        {trustedContacts.map((contact) => (
+        {sampleContacts.map((contact) => (
           <SoftCard key={contact.id}>
             <div className="flex items-center gap-4">
               <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-primary-soft font-display text-lg font-bold text-primary" aria-hidden>
-                {contact.initials}
+                {contact.name.split(" ").map((part) => part[0]).join("")}
               </span>
               <div className="min-w-0 flex-1">
                 <p className="font-display text-lg font-bold text-foreground">{contact.name}</p>

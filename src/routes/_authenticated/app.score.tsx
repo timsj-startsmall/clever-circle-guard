@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell, SoftCard } from "@/components/safe/app-shell";
 import { ScoreRing } from "@/components/safe/score-ring";
-import { shieldScore } from "@/lib/sample-data";
+import { scoreHistory, shieldScore } from "@/lib/sample-data";
 
 export const Route = createFileRoute("/_authenticated/app/score")({
   head: () => ({
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_authenticated/app/score")({
 });
 
 function ScorePage() {
-  const max = Math.max(...shieldScore.history.map((point) => point.score));
+  const max = Math.max(...scoreHistory.map((point) => point.score));
   return (
     <AppShell title="Scam Shield Score" subtitle="How your safety habits are going">
       <SoftCard className="flex items-center gap-5 bg-gradient-to-br from-primary-soft to-accent-soft">
@@ -31,9 +31,9 @@ function ScorePage() {
         <h2 className="font-display text-lg font-bold text-foreground">This month so far</h2>
         <ul className="mt-3 space-y-2">
           {shieldScore.insights.map((insight) => (
-            <li key={insight} className="flex items-start gap-2.5 text-foreground">
+            <li key={insight.text} className="flex items-start gap-2.5 text-foreground">
               <span className="mt-2 size-2 shrink-0 rounded-full bg-primary" aria-hidden />
-              {insight}
+              {insight.text}
             </li>
           ))}
         </ul>
@@ -42,15 +42,15 @@ function ScorePage() {
       <SoftCard className="mt-4">
         <h2 className="font-display text-lg font-bold text-foreground">Your score over time</h2>
         <div className="mt-4 flex h-40 items-end gap-2">
-          {shieldScore.history.map((point) => (
-            <div key={point.label} className="flex flex-1 flex-col items-center gap-2">
+          {scoreHistory.map((point) => (
+            <div key={point.week} className="flex flex-1 flex-col items-center gap-2">
               <div
                 className="w-full rounded-t-xl bg-primary/80"
                 style={{ height: `${(point.score / max) * 100}%` }}
                 role="img"
-                aria-label={`${point.label}: ${point.score} out of 100`}
+                aria-label={`${point.week}: ${point.score} out of 100`}
               />
-              <span className="text-xs text-muted-foreground">{point.label}</span>
+              <span className="text-xs text-muted-foreground">{point.week}</span>
             </div>
           ))}
         </div>
@@ -60,9 +60,9 @@ function ScorePage() {
         <h2 className="font-display text-lg font-bold text-foreground">Gentle suggestions</h2>
         <ul className="mt-3 space-y-2">
           {shieldScore.recommendations.map((item) => (
-            <li key={item} className="flex items-start gap-2.5 text-foreground">
+            <li key={item.title} className="flex items-start gap-2.5 text-foreground">
               <span className="mt-2 size-2 shrink-0 rounded-full bg-accent" aria-hidden />
-              {item}
+              <span><span className="font-semibold">{item.title}</span> — {item.detail}</span>
             </li>
           ))}
         </ul>

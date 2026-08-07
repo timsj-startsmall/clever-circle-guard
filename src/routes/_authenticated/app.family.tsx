@@ -62,9 +62,9 @@ function FamilyDashboard() {
         <h2 className="font-display text-lg font-bold text-foreground">Ways to help this week</h2>
         <ul className="mt-3 space-y-2">
           {shieldScore.recommendations.map((item) => (
-            <li key={item} className="flex items-start gap-2.5 text-foreground">
+            <li key={item.title} className="flex items-start gap-2.5 text-foreground">
               <span className="mt-2 size-2 shrink-0 rounded-full bg-accent" aria-hidden />
-              {item}
+              <span><span className="font-semibold">{item.title}</span> — {item.detail}</span>
             </li>
           ))}
         </ul>
