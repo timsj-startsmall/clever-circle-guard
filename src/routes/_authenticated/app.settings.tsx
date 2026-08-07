@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_authenticated/app/settings")({
 });
 
 function Settings() {
-  const { preferences, setPreference } = usePreferences();
+  const { prefs, setPref } = usePreferences();
   const navigate = useNavigate();
 
   const toggles = [
@@ -43,8 +43,8 @@ function Settings() {
                 <p className="text-sm text-muted-foreground">{toggle.detail}</p>
               </div>
               <Switch
-                checked={preferences[toggle.key]}
-                onCheckedChange={(value) => setPreference(toggle.key, value)}
+                checked={prefs[toggle.key]}
+                onCheckedChange={(value) => setPref(toggle.key, value)}
                 aria-label={toggle.label}
               />
             </li>

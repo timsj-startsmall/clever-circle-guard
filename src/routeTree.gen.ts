@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as EnterpriseRouteImport } from './routes/enterprise'
 import { Route as AuthenticatedAppCallRouteImport } from './routes/_authenticated/app.call'
 import { Route as AuthenticatedAppChatRouteImport } from './routes/_authenticated/app.chat'
 import { Route as AuthenticatedAppDashboardRouteImport } from './routes/_authenticated/app.dashboard'
@@ -21,7 +22,9 @@ import { Route as AuthenticatedAppMessageRouteImport } from './routes/_authentic
 import { Route as AuthenticatedAppNotificationsRouteImport } from './routes/_authenticated/app.notifications'
 import { Route as AuthenticatedAppPaymentRouteImport } from './routes/_authenticated/app.payment'
 import { Route as AuthenticatedAppScoreRouteImport } from './routes/_authenticated/app.score'
+import { Route as AuthenticatedAppSettingsRouteImport } from './routes/_authenticated/app.settings'
 import { Route as AuthenticatedAppTrustedRouteImport } from './routes/_authenticated/app.trusted'
+import { Route as AuthenticatedAppUnsureRouteImport } from './routes/_authenticated/app.unsure'
 import { Route as AuthenticatedAppWebsiteRouteImport } from './routes/_authenticated/app.website'
 
 const IndexRoute = IndexRouteImport.update({
@@ -36,6 +39,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnterpriseRoute = EnterpriseRouteImport.update({
+  id: '/enterprise',
+  path: '/enterprise',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAppCallRoute = AuthenticatedAppCallRouteImport.update({
@@ -85,9 +93,20 @@ const AuthenticatedAppScoreRoute = AuthenticatedAppScoreRouteImport.update({
   path: '/app/score',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAppSettingsRoute =
+  AuthenticatedAppSettingsRouteImport.update({
+    id: '/app/settings',
+    path: '/app/settings',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAppTrustedRoute = AuthenticatedAppTrustedRouteImport.update({
   id: '/app/trusted',
   path: '/app/trusted',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppUnsureRoute = AuthenticatedAppUnsureRouteImport.update({
+  id: '/app/unsure',
+  path: '/app/unsure',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAppWebsiteRoute = AuthenticatedAppWebsiteRouteImport.update({
@@ -99,6 +118,7 @@ const AuthenticatedAppWebsiteRoute = AuthenticatedAppWebsiteRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/enterprise': typeof EnterpriseRoute
   '/app/call': typeof AuthenticatedAppCallRoute
   '/app/chat': typeof AuthenticatedAppChatRoute
   '/app/dashboard': typeof AuthenticatedAppDashboardRoute
@@ -108,12 +128,15 @@ export interface FileRoutesByFullPath {
   '/app/notifications': typeof AuthenticatedAppNotificationsRoute
   '/app/payment': typeof AuthenticatedAppPaymentRoute
   '/app/score': typeof AuthenticatedAppScoreRoute
+  '/app/settings': typeof AuthenticatedAppSettingsRoute
   '/app/trusted': typeof AuthenticatedAppTrustedRoute
+  '/app/unsure': typeof AuthenticatedAppUnsureRoute
   '/app/website': typeof AuthenticatedAppWebsiteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/enterprise': typeof EnterpriseRoute
   '/app/call': typeof AuthenticatedAppCallRoute
   '/app/chat': typeof AuthenticatedAppChatRoute
   '/app/dashboard': typeof AuthenticatedAppDashboardRoute
@@ -123,7 +146,9 @@ export interface FileRoutesByTo {
   '/app/notifications': typeof AuthenticatedAppNotificationsRoute
   '/app/payment': typeof AuthenticatedAppPaymentRoute
   '/app/score': typeof AuthenticatedAppScoreRoute
+  '/app/settings': typeof AuthenticatedAppSettingsRoute
   '/app/trusted': typeof AuthenticatedAppTrustedRoute
+  '/app/unsure': typeof AuthenticatedAppUnsureRoute
   '/app/website': typeof AuthenticatedAppWebsiteRoute
 }
 export interface FileRoutesById {
@@ -131,6 +156,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/enterprise': typeof EnterpriseRoute
   '/_authenticated/app/call': typeof AuthenticatedAppCallRoute
   '/_authenticated/app/chat': typeof AuthenticatedAppChatRoute
   '/_authenticated/app/dashboard': typeof AuthenticatedAppDashboardRoute
@@ -140,7 +166,9 @@ export interface FileRoutesById {
   '/_authenticated/app/notifications': typeof AuthenticatedAppNotificationsRoute
   '/_authenticated/app/payment': typeof AuthenticatedAppPaymentRoute
   '/_authenticated/app/score': typeof AuthenticatedAppScoreRoute
+  '/_authenticated/app/settings': typeof AuthenticatedAppSettingsRoute
   '/_authenticated/app/trusted': typeof AuthenticatedAppTrustedRoute
+  '/_authenticated/app/unsure': typeof AuthenticatedAppUnsureRoute
   '/_authenticated/app/website': typeof AuthenticatedAppWebsiteRoute
 }
 export interface FileRouteTypes {
@@ -148,6 +176,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/enterprise'
     | '/app/call'
     | '/app/chat'
     | '/app/dashboard'
@@ -157,12 +186,15 @@ export interface FileRouteTypes {
     | '/app/notifications'
     | '/app/payment'
     | '/app/score'
+    | '/app/settings'
     | '/app/trusted'
+    | '/app/unsure'
     | '/app/website'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
+    | '/enterprise'
     | '/app/call'
     | '/app/chat'
     | '/app/dashboard'
@@ -172,13 +204,16 @@ export interface FileRouteTypes {
     | '/app/notifications'
     | '/app/payment'
     | '/app/score'
+    | '/app/settings'
     | '/app/trusted'
+    | '/app/unsure'
     | '/app/website'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/enterprise'
     | '/_authenticated/app/call'
     | '/_authenticated/app/chat'
     | '/_authenticated/app/dashboard'
@@ -188,7 +223,9 @@ export interface FileRouteTypes {
     | '/_authenticated/app/notifications'
     | '/_authenticated/app/payment'
     | '/_authenticated/app/score'
+    | '/_authenticated/app/settings'
     | '/_authenticated/app/trusted'
+    | '/_authenticated/app/unsure'
     | '/_authenticated/app/website'
   fileRoutesById: FileRoutesById
 }
@@ -196,6 +233,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
+  EnterpriseRoute: typeof EnterpriseRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -219,6 +257,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enterprise': {
+      id: '/enterprise'
+      path: '/enterprise'
+      fullPath: '/enterprise'
+      preLoaderRoute: typeof EnterpriseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/app/call': {
@@ -284,11 +329,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppScoreRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/app/settings': {
+      id: '/_authenticated/app/settings'
+      path: '/app/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AuthenticatedAppSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/app/trusted': {
       id: '/_authenticated/app/trusted'
       path: '/app/trusted'
       fullPath: '/app/trusted'
       preLoaderRoute: typeof AuthenticatedAppTrustedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/app/unsure': {
+      id: '/_authenticated/app/unsure'
+      path: '/app/unsure'
+      fullPath: '/app/unsure'
+      preLoaderRoute: typeof AuthenticatedAppUnsureRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/app/website': {
@@ -311,7 +370,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAppNotificationsRoute: typeof AuthenticatedAppNotificationsRoute
   AuthenticatedAppPaymentRoute: typeof AuthenticatedAppPaymentRoute
   AuthenticatedAppScoreRoute: typeof AuthenticatedAppScoreRoute
+  AuthenticatedAppSettingsRoute: typeof AuthenticatedAppSettingsRoute
   AuthenticatedAppTrustedRoute: typeof AuthenticatedAppTrustedRoute
+  AuthenticatedAppUnsureRoute: typeof AuthenticatedAppUnsureRoute
   AuthenticatedAppWebsiteRoute: typeof AuthenticatedAppWebsiteRoute
 }
 
@@ -325,7 +386,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAppNotificationsRoute: AuthenticatedAppNotificationsRoute,
   AuthenticatedAppPaymentRoute: AuthenticatedAppPaymentRoute,
   AuthenticatedAppScoreRoute: AuthenticatedAppScoreRoute,
+  AuthenticatedAppSettingsRoute: AuthenticatedAppSettingsRoute,
   AuthenticatedAppTrustedRoute: AuthenticatedAppTrustedRoute,
+  AuthenticatedAppUnsureRoute: AuthenticatedAppUnsureRoute,
   AuthenticatedAppWebsiteRoute: AuthenticatedAppWebsiteRoute,
 }
 
@@ -336,6 +399,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
+  EnterpriseRoute: EnterpriseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
