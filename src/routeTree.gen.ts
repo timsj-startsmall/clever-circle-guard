@@ -15,9 +15,13 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedAppCallRouteImport } from './routes/_authenticated/app.call'
 import { Route as AuthenticatedAppChatRouteImport } from './routes/_authenticated/app.chat'
 import { Route as AuthenticatedAppDashboardRouteImport } from './routes/_authenticated/app.dashboard'
+import { Route as AuthenticatedAppFamilyRouteImport } from './routes/_authenticated/app.family'
 import { Route as AuthenticatedAppLearnRouteImport } from './routes/_authenticated/app.learn'
 import { Route as AuthenticatedAppMessageRouteImport } from './routes/_authenticated/app.message'
+import { Route as AuthenticatedAppNotificationsRouteImport } from './routes/_authenticated/app.notifications'
 import { Route as AuthenticatedAppPaymentRouteImport } from './routes/_authenticated/app.payment'
+import { Route as AuthenticatedAppScoreRouteImport } from './routes/_authenticated/app.score'
+import { Route as AuthenticatedAppTrustedRouteImport } from './routes/_authenticated/app.trusted'
 import { Route as AuthenticatedAppWebsiteRouteImport } from './routes/_authenticated/app.website'
 
 const IndexRoute = IndexRouteImport.update({
@@ -50,6 +54,11 @@ const AuthenticatedAppDashboardRoute =
     path: '/app/dashboard',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAppFamilyRoute = AuthenticatedAppFamilyRouteImport.update({
+  id: '/app/family',
+  path: '/app/family',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAppLearnRoute = AuthenticatedAppLearnRouteImport.update({
   id: '/app/learn',
   path: '/app/learn',
@@ -60,9 +69,25 @@ const AuthenticatedAppMessageRoute = AuthenticatedAppMessageRouteImport.update({
   path: '/app/message',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAppNotificationsRoute =
+  AuthenticatedAppNotificationsRouteImport.update({
+    id: '/app/notifications',
+    path: '/app/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAppPaymentRoute = AuthenticatedAppPaymentRouteImport.update({
   id: '/app/payment',
   path: '/app/payment',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppScoreRoute = AuthenticatedAppScoreRouteImport.update({
+  id: '/app/score',
+  path: '/app/score',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppTrustedRoute = AuthenticatedAppTrustedRouteImport.update({
+  id: '/app/trusted',
+  path: '/app/trusted',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAppWebsiteRoute = AuthenticatedAppWebsiteRouteImport.update({
@@ -77,9 +102,13 @@ export interface FileRoutesByFullPath {
   '/app/call': typeof AuthenticatedAppCallRoute
   '/app/chat': typeof AuthenticatedAppChatRoute
   '/app/dashboard': typeof AuthenticatedAppDashboardRoute
+  '/app/family': typeof AuthenticatedAppFamilyRoute
   '/app/learn': typeof AuthenticatedAppLearnRoute
   '/app/message': typeof AuthenticatedAppMessageRoute
+  '/app/notifications': typeof AuthenticatedAppNotificationsRoute
   '/app/payment': typeof AuthenticatedAppPaymentRoute
+  '/app/score': typeof AuthenticatedAppScoreRoute
+  '/app/trusted': typeof AuthenticatedAppTrustedRoute
   '/app/website': typeof AuthenticatedAppWebsiteRoute
 }
 export interface FileRoutesByTo {
@@ -88,9 +117,13 @@ export interface FileRoutesByTo {
   '/app/call': typeof AuthenticatedAppCallRoute
   '/app/chat': typeof AuthenticatedAppChatRoute
   '/app/dashboard': typeof AuthenticatedAppDashboardRoute
+  '/app/family': typeof AuthenticatedAppFamilyRoute
   '/app/learn': typeof AuthenticatedAppLearnRoute
   '/app/message': typeof AuthenticatedAppMessageRoute
+  '/app/notifications': typeof AuthenticatedAppNotificationsRoute
   '/app/payment': typeof AuthenticatedAppPaymentRoute
+  '/app/score': typeof AuthenticatedAppScoreRoute
+  '/app/trusted': typeof AuthenticatedAppTrustedRoute
   '/app/website': typeof AuthenticatedAppWebsiteRoute
 }
 export interface FileRoutesById {
@@ -101,9 +134,13 @@ export interface FileRoutesById {
   '/_authenticated/app/call': typeof AuthenticatedAppCallRoute
   '/_authenticated/app/chat': typeof AuthenticatedAppChatRoute
   '/_authenticated/app/dashboard': typeof AuthenticatedAppDashboardRoute
+  '/_authenticated/app/family': typeof AuthenticatedAppFamilyRoute
   '/_authenticated/app/learn': typeof AuthenticatedAppLearnRoute
   '/_authenticated/app/message': typeof AuthenticatedAppMessageRoute
+  '/_authenticated/app/notifications': typeof AuthenticatedAppNotificationsRoute
   '/_authenticated/app/payment': typeof AuthenticatedAppPaymentRoute
+  '/_authenticated/app/score': typeof AuthenticatedAppScoreRoute
+  '/_authenticated/app/trusted': typeof AuthenticatedAppTrustedRoute
   '/_authenticated/app/website': typeof AuthenticatedAppWebsiteRoute
 }
 export interface FileRouteTypes {
@@ -114,9 +151,13 @@ export interface FileRouteTypes {
     | '/app/call'
     | '/app/chat'
     | '/app/dashboard'
+    | '/app/family'
     | '/app/learn'
     | '/app/message'
+    | '/app/notifications'
     | '/app/payment'
+    | '/app/score'
+    | '/app/trusted'
     | '/app/website'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -125,9 +166,13 @@ export interface FileRouteTypes {
     | '/app/call'
     | '/app/chat'
     | '/app/dashboard'
+    | '/app/family'
     | '/app/learn'
     | '/app/message'
+    | '/app/notifications'
     | '/app/payment'
+    | '/app/score'
+    | '/app/trusted'
     | '/app/website'
   id:
     | '__root__'
@@ -137,9 +182,13 @@ export interface FileRouteTypes {
     | '/_authenticated/app/call'
     | '/_authenticated/app/chat'
     | '/_authenticated/app/dashboard'
+    | '/_authenticated/app/family'
     | '/_authenticated/app/learn'
     | '/_authenticated/app/message'
+    | '/_authenticated/app/notifications'
     | '/_authenticated/app/payment'
+    | '/_authenticated/app/score'
+    | '/_authenticated/app/trusted'
     | '/_authenticated/app/website'
   fileRoutesById: FileRoutesById
 }
@@ -193,6 +242,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/app/family': {
+      id: '/_authenticated/app/family'
+      path: '/app/family'
+      fullPath: '/app/family'
+      preLoaderRoute: typeof AuthenticatedAppFamilyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/app/learn': {
       id: '/_authenticated/app/learn'
       path: '/app/learn'
@@ -207,11 +263,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppMessageRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/app/notifications': {
+      id: '/_authenticated/app/notifications'
+      path: '/app/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AuthenticatedAppNotificationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/app/payment': {
       id: '/_authenticated/app/payment'
       path: '/app/payment'
       fullPath: '/app/payment'
       preLoaderRoute: typeof AuthenticatedAppPaymentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/app/score': {
+      id: '/_authenticated/app/score'
+      path: '/app/score'
+      fullPath: '/app/score'
+      preLoaderRoute: typeof AuthenticatedAppScoreRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/app/trusted': {
+      id: '/_authenticated/app/trusted'
+      path: '/app/trusted'
+      fullPath: '/app/trusted'
+      preLoaderRoute: typeof AuthenticatedAppTrustedRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/app/website': {
@@ -228,9 +305,13 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAppCallRoute: typeof AuthenticatedAppCallRoute
   AuthenticatedAppChatRoute: typeof AuthenticatedAppChatRoute
   AuthenticatedAppDashboardRoute: typeof AuthenticatedAppDashboardRoute
+  AuthenticatedAppFamilyRoute: typeof AuthenticatedAppFamilyRoute
   AuthenticatedAppLearnRoute: typeof AuthenticatedAppLearnRoute
   AuthenticatedAppMessageRoute: typeof AuthenticatedAppMessageRoute
+  AuthenticatedAppNotificationsRoute: typeof AuthenticatedAppNotificationsRoute
   AuthenticatedAppPaymentRoute: typeof AuthenticatedAppPaymentRoute
+  AuthenticatedAppScoreRoute: typeof AuthenticatedAppScoreRoute
+  AuthenticatedAppTrustedRoute: typeof AuthenticatedAppTrustedRoute
   AuthenticatedAppWebsiteRoute: typeof AuthenticatedAppWebsiteRoute
 }
 
@@ -238,9 +319,13 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAppCallRoute: AuthenticatedAppCallRoute,
   AuthenticatedAppChatRoute: AuthenticatedAppChatRoute,
   AuthenticatedAppDashboardRoute: AuthenticatedAppDashboardRoute,
+  AuthenticatedAppFamilyRoute: AuthenticatedAppFamilyRoute,
   AuthenticatedAppLearnRoute: AuthenticatedAppLearnRoute,
   AuthenticatedAppMessageRoute: AuthenticatedAppMessageRoute,
+  AuthenticatedAppNotificationsRoute: AuthenticatedAppNotificationsRoute,
   AuthenticatedAppPaymentRoute: AuthenticatedAppPaymentRoute,
+  AuthenticatedAppScoreRoute: AuthenticatedAppScoreRoute,
+  AuthenticatedAppTrustedRoute: AuthenticatedAppTrustedRoute,
   AuthenticatedAppWebsiteRoute: AuthenticatedAppWebsiteRoute,
 }
 
