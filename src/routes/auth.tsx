@@ -41,7 +41,10 @@ function AuthPage() {
   const afterAuth = async () => {
     const { data } = await supabase.auth.getUser();
     if (data.user) {
-      await supabase.from("profiles").update({ role, display_name: name || undefined }).eq("id", data.user.id);
+      await supabase
+        .from("profiles")
+        .update(name ? { role, display_name: name } : { role })
+        .eq("id", data.user.id);
     }
     navigate({ to: role === "family" ? "/app/family" : "/app/dashboard" });
   };
