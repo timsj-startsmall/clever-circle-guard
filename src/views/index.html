@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clever Circle Guard</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #eef2f5;
+      color: #17212b;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: #f8fafb;
+      position: relative;
+      padding-bottom: 78px;
+    }
+
+    .screen {
+      display: none;
+      min-height: calc(100vh - 78px);
+      padding: 24px 20px;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    /* Header */
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .logo {
+      font-size: 19px;
+      font-weight: 750;
+      letter-spacing: -0.4px;
+    }
+
+    .profile {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #dfe7ed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .back {
+      border: 0;
+      background: transparent;
+      font-size: 16px;
+      padding: 5px 0;
+    }
+
+    /* Shield */
+
+    .shield-card {
+      background: #163b32;
+      color: white;
+      border-radius: 24px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(22, 59, 50, 0.18);
+    }
+
+    .shield-icon {
+      font-size: 38px;
+      margin-bottom: 5px;
+    }
+
+    .shield-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      opacity: .8;
+    }
+
+    .shield-score {
+      font-size: 68px;
+      line-height: 1;
+      font-weight: 800;
+      margin: 8px 0;
+    }
+
+    .shield-status {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* Buttons */
+
+    .primary-button {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 16px;
+      background: #163b32;
+      color: white;
+      font-weight: 700;
+      margin-top: 18px;
+    }
+
+    .secondary-button {
+      width: 100%;
+      border: 1px solid #d5dde2;
+      border-radius: 14px;
+      padding: 15px;
+      background: white;
+      font-weight: 650;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .button-row button {
+      flex: 1;
+    }
+
+    /* Statistics */
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: .8px;
+      color: #68747d;
+      margin: 28px 0 12px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      background: white;
+      border-radius: 15px;
+      padding: 16px 8px;
+      text-align: center;
+      border: 1px solid #e5eaed;
+    }
+
+    .stat-number {
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #75818a;
+      margin-top: 3px;
+    }
+
+    /* Activity */
+
+    .activity {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #e5eaed;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-bottom: 1px solid #edf0f2;
+    }
+
+    .activity-item:last-child {
+      border-bottom: 0;
+    }
+
+    .activity-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .risk-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .red {
+      background: #d64545;
+    }
+
+    .orange {
+      background: #e59a32;
+    }
+
+    .green {
+      background: #3d9b68;
+    }
+
+    .risk-text {
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    /* Check screen */
+
+    h1 {
+      font-size: 29px;
+      line-height: 1.1;
+      letter-spacing: -.7px;
+      margin-bottom: 9px;
+    }
+
+    .subtitle {
+      color: #68747d;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 190px;
+      border: 1px solid #d7dfe4;
+      border-radius: 16px;
+      padding: 16px;
+      resize: none;
+      font: inherit;
+      background: white;
+      line-height: 1.5;
+    }
+
+    textarea:focus {
+      outline: 2px solid #9bb9af;
+      border-color: transparent;
+    }
+
+    .privacy {
+      text-align: center;
+      font-size: 12px;
+      color: #78838a;
+      margin-top: 14px;
+    }
+
+    /* Result */
+
+    .result-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 25px 20px;
+      text-align: center;
+      border: 1px solid #e4e9ec;
+    }
+
+    .warning-icon {
+      font-size: 42px;
+    }
+
+    .risk-level {
+      color: #c13d3d;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-top: 8px;
+    }
+
+    .risk-score {
+      font-size: 58px;
+      font-weight: 800;
+      line-height: 1;
+      margin: 8px 0;
+    }
+
+    .risk-description {
+      color: #68747d;
+      line-height: 1.45;
+    }
+
+    .reason-list {
+      margin-top: 14px;
+    }
+
+    .reason {
+      background: white;
+      border: 1px solid #e7ebed;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 9px;
+      text-align: left;
+    }
+
+    .reason strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .reason span {
+      font-size: 13px;
+      color: #68747d;
+    }
+
+    .danger-button {
+      width: 100%;
+      border: 0;
+      background: #fff0f0;
+      color: #b53434;
+      border-radius: 14px;
+      padding: 15px;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    /* Advice */
+
+    .advice-card {
+      background: white;
+      border: 1px solid #e4e9ec;
+      border-radius: 18px;
+      padding: 5px 18px;
+    }
+
+    .advice-item {
+      padding: 19px 0;
+      border-bottom: 1px solid #edf0f2;
+      display: flex;
+      gap: 13px;
+    }
+
+    .advice-item:last-child {
+      border-bottom: 0;
+    }
+
+    .advice-number {
+      font-size: 21px;
+      flex-shrink: 0;
+    }
+
+    .advice-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .advice-item p {
+      color: #68747d;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    /* History */
+
+    .score-small {
+      background: #163b32;
+      color: white;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .score-small .number {
+      font-size: 50px;
+      font-weight: 800;
+    }
+
+    .score-small .label {
+      font-size: 13px;
+      opacity: .8;
+    }
+
+    .category {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid #e8edef;
+    }
+
+    .category:last-child {
+      border-bottom: 0;
+    }
+
+    /* Bottom navigation */
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 430px;
+      height: 78px;
+      background: rgba(255,255,255,.96);
+      border-top: 1px solid #e3e8eb;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      z-index: 20;
+    }
+
+    .nav-button {
+      border: 0;
+      background: transparent;
+      color: #77828a;
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .nav-button.active {
+      color: #163b32;
+      font-weight: 750;
+    }
+
+    .nav-icon {
+      font-size: 21px;
+    }
+
+    @media (min-width: 600px) {
+      body {
+        padding: 30px 0;
+      }
+
+      .app {
+        min-height: 800px;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 15px 50px rgba(0,0,0,.12);
+      }
+
+      .screen {
+        min-height: 722px;
+      }
+
+      .bottom-nav {
+        position: absolute;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- ================= DASHBOARD ================= -->
+
+  <section id="dashboard" class="screen active">
+
+    <header class="header">
+      <div class="logo">Clever Circle Guard</div>
+      <div class="profile">👤</div>
+    </header>
+
+    <div class="shield-card">
+      <div class="shield-icon">🛡️</div>
+      <div class="shield-label">YOUR SHIELD</div>
+      <div class="shield-score">92</div>
+      <div class="shield-status">Excellent</div>
+      <div style="margin-top:8px;font-size:13px;opacity:.8;">
+        Your protection is strong ↑
+      </div>
+    </div>
+
+    <button class="primary-button" onclick="showScreen('check')">
+      🔍 Check a message
+    </button>
+
+    <div class="section-title">THIS MONTH</div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">18</div>
+        <div class="stat-label">Checked</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">7</div>
+        <div class="stat-label">Suspicious</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">High risk</div>
+      </div>
+    </div>
+
+    <div class="section-title">RECENT ACTIVITY</div>
+
+    <div class="activity">
+
+      <div class="activity-item">
+        <div class="activity-left">
+          <div class="risk-dot red"></div>
+          <span>Royal Mail</span>
+        </div>
+        <span class="risk-text">HIGH</span>
+      </div>
+
+      <div class="activity-item">
+        <div class="activity-left">
+          <div class="risk-dot orange"></div>
+          <span>HMRC</span>
+        </div>
+        <span class="risk-text">MEDIUM</span>
+      </div>
+
+      <div class="activity-item">
+        <div class="activity-left">
+          <div class="risk-dot green"></div>
+          <span>Tesco</span>
+        </div>
+        <span class="risk-text">LOW</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= CHECK ================= -->
+
+  <section id="check" class="screen">
+
+    <button class="back" onclick="showScreen('dashboard')">
+      ← Back
+    </button>
+
+    <div style="margin-top:25px;">
+      <h1>Is something making you suspicious?</h1>
+
+      <p class="subtitle">
+        Paste the message below and we'll check it for common scam warning signs.
+      </p>
+
+      <textarea id="messageInput" placeholder="Paste a suspicious message here...">Royal Mail: We tried to deliver your parcel today but nobody was available. Please pay £2.99 to rearrange delivery: http://royal-mail-delivery.example</textarea>
+
+      <div class="button-row">
+        <button class="secondary-button">
+          📷 Upload screenshot
+        </button>
+
+        <button class="secondary-button" onclick="pasteExample()">
+          📋 Paste
+        </button>
+      </div>
+
+      <button class="primary-button" onclick="analyseMessage()">
+        🔎 Analyse message
+      </button>
+
+      <div class="privacy">
+        🔒 Your message is private and secure.
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ================= RESULT ================= -->
+
+  <section id="result" class="screen">
+
+    <button class="back" onclick="showScreen('check')">
+      ← Back
+    </button>
+
+    <div style="margin-top:20px;">
+
+      <div class="result-card">
+
+        <div class="warning-icon">⚠️</div>
+
+        <div class="risk-level">HIGH RISK</div>
+
+        <div class="risk-score">82</div>
+
+        <p style="font-size:13px;color:#78838a;">
+          Risk score out of 100
+        </p>
+
+        <p class="risk-description" style="margin-top:15px;">
+          We think this message is likely to be a scam.
+        </p>
+
+      </div>
+
+      <div class="section-title">WHY WE'RE CONCERNED</div>
+
+      <div class="reason-list">
+
+        <div class="reason">
+          <strong>🔴 Urgent language</strong>
+          <span>Creates pressure to act quickly.</span>
+        </div>
+
+        <div class="reason">
+          <strong>🔴 Payment requested</strong>
+          <span>The message asks you to make a payment.</span>
+        </div>
+
+        <div class="reason">
+          <strong>🔴 Suspicious link</strong>
+          <span>The website doesn't appear to match the organisation.</span>
+        </div>
+
+        <div class="reason">
+          <strong>🟠 Impersonation</strong>
+          <span>The sender claims to represent Royal Mail.</span>
+        </div>
+
+      </div>
+
+      <button class="danger-button">
+        🚫 Don't click the link
+      </button>
+
+      <button class="primary-button" onclick="showScreen('advice')">
+        What should I do? →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= ADVICE ================= -->
+
+  <section id="advice" class="screen">
+
+    <button class="back" onclick="showScreen('result')">
+      ← Back
+    </button>
+
+    <div style="margin-top:25px;">
+
+      <h1>Don't worry.</h1>
+
+      <p class="subtitle">
+        Here's what we recommend you do.
+      </p>
+
+      <div class="advice-card">
+
+        <div class="advice-item">
+          <div class="advice-number">1️⃣</div>
+          <div>
+            <strong>DON'T CLICK</strong>
+            <p>Don't open links contained in the message.</p>
+          </div>
+        </div>
+
+        <div class="advice-item">
+          <div class="advice-number">2️⃣</div>
+          <div>
+            <strong>DON'T REPLY</strong>
+            <p>Ignore the message rather than responding.</p>
+          </div>
+        </div>
+
+        <div class="advice-item">
+          <div class="advice-number">3️⃣</div>
+          <div>
+            <strong>DON'T PAY</strong>
+            <p>Never enter card or banking details from this message.</p>
+          </div>
+        </div>
+
+        <div class="advice-item">
+          <div class="advice-number">4️⃣</div>
+          <div>
+            <strong>CHECK DIRECTLY</strong>
+            <p>
+              Open the organisation's official app or website yourself.
+            </p>
+          </div>
+        </div>
+
+        <div class="advice-item">
+          <div class="advice-number">5️⃣</div>
+          <div>
+            <strong>REPORT IT</strong>
+            <p>
+              Reporting scams can help protect other people.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="primary-button" onclick="showScreen('history')">
+        ✓ I've dealt with it
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= HISTORY ================= -->
+
+  <section id="history" class="screen">
+
+    <button class="back" onclick="showScreen('dashboard')">
+      ← Back
+    </button>
+
+    <div style="margin-top:20px;">
+
+      <h1>Your Protection</h1>
+
+      <p class="subtitle">
+        See how your Scam Shield is performing.
+      </p>
+
+      <div class="score-small">
+        <div class="label">SCAM SHIELD SCORE</div>
+        <div class="number">92</div>
+        <div>Excellent</div>
+      </div>
+
+      <div class="section-title">AUGUST 2026</div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number">18</div>
+          <div class="stat-label">Checked</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Suspicious</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-number">3</div>
+          <div class="stat-label">High risk</div>
+        </div>
+      </div>
+
+      <div class="section-title">MOST COMMON</div>
+
+      <div class="activity">
+
+        <div class="category">
+          <span>📦 Parcel scams</span>
+          <strong>4</strong>
+        </div>
+
+        <div class="category">
+          <span>💳 Payment scams</span>
+          <strong>2</strong>
+        </div>
+
+        <div class="category">
+          <span>🏦 Banking scams</span>
+          <strong>1</strong>
+        </div>
+
+      </div>
+
+      <div class="section-title">RECENT CHECKS</div>
+
+      <div class="activity">
+
+        <div class="activity-item">
+          <div class="activity-left">
+            <div class="risk-dot red"></div>
+            <span>Royal Mail</span>
+          </div>
+          <span class="risk-text">82 HIGH</span>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-left">
+            <div class="risk-dot orange"></div>
+            <span>HMRC</span>
+          </div>
+          <span class="risk-text">54 MEDIUM</span>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-left">
+            <div class="risk-dot green"></div>
+            <span>Tesco</span>
+          </div>
+          <span class="risk-text">8 LOW</span>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-left">
+            <div class="risk-dot red"></div>
+            <span>DVLA</span>
+          </div>
+          <span class="risk-text">76 HIGH</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= NAVIGATION ================= -->
+
+  <nav class="bottom-nav">
+
+    <button class="nav-button active" onclick="showScreen('dashboard')">
+      <span class="nav-icon">🏠</span>
+      Home
+    </button>
+
+    <button class="nav-button" onclick="showScreen('check')">
+      <span class="nav-icon">🔍</span>
+      Check
+    </button>
+
+    <button class="nav-button" onclick="showScreen('history')">
+      <span class="nav-icon">📊</span>
+      History
+    </button>
+
+    <button class="nav-button">
+      <span class="nav-icon">👤</span>
+      You
+    </button>
+
+  </nav>
+
+</div>
+
+
+<script>
+
+  function showScreen(screenId) {
+
+    document.querySelectorAll('.screen').forEach(screen => {
+      screen.classList.remove('active');
+    });
+
+    document.getElementById(screenId).classList.add('active');
+
+    document.querySelectorAll('.nav-button').forEach(button => {
+      button.classList.remove('active');
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+
+  function analyseMessage() {
+
+    const message = document.getElementById('messageInput').value.trim();
+
+    if (!message) {
+      alert('Please paste a message first.');
+      return;
+    }
+
+    showScreen('result');
+  }
+
+
+  function pasteExample() {
+
+    document.getElementById('messageInput').value =
+      'Your parcel could not be delivered. Pay £2.99 to rearrange delivery now: http://example-suspicious-link.com';
+
+  }
+
+</script>
+
+</body>
+</html>

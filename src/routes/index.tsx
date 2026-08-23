@@ -260,7 +260,8 @@ function Landing() {
           <div>
             <h3 className="font-display text-sm font-bold uppercase tracking-wide text-muted-foreground">If you're worried now</h3>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              <li>Ring your bank on the number on your card</li>
+              <li>Ring your bank on the number on your card - Always disconnect any call and verify the number independently.</li>
+              <li>Use <b>159</b> from any phone to contact your bank </li>
               <li>Report a scam to Action Fraud on 0300 123 2040</li>
               <li>Forward suspicious texts to 7726, free of charge</li>
             </ul>
