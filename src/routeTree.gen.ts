@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CheckRouteImport } from './routes/check'
 import { Route as EnterpriseRouteImport } from './routes/enterprise'
 import { Route as AuthenticatedAppCallRouteImport } from './routes/_authenticated/app.call'
 import { Route as AuthenticatedAppChatRouteImport } from './routes/_authenticated/app.chat'
@@ -39,6 +40,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckRoute = CheckRouteImport.update({
+  id: '/check',
+  path: '/check',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnterpriseRoute = EnterpriseRouteImport.update({
@@ -118,6 +124,7 @@ const AuthenticatedAppWebsiteRoute = AuthenticatedAppWebsiteRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/check': typeof CheckRoute
   '/enterprise': typeof EnterpriseRoute
   '/app/call': typeof AuthenticatedAppCallRoute
   '/app/chat': typeof AuthenticatedAppChatRoute
@@ -136,6 +143,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/check': typeof CheckRoute
   '/enterprise': typeof EnterpriseRoute
   '/app/call': typeof AuthenticatedAppCallRoute
   '/app/chat': typeof AuthenticatedAppChatRoute
@@ -156,6 +164,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/check': typeof CheckRoute
   '/enterprise': typeof EnterpriseRoute
   '/_authenticated/app/call': typeof AuthenticatedAppCallRoute
   '/_authenticated/app/chat': typeof AuthenticatedAppChatRoute
@@ -176,6 +185,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/check'
     | '/enterprise'
     | '/app/call'
     | '/app/chat'
@@ -194,6 +204,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/check'
     | '/enterprise'
     | '/app/call'
     | '/app/chat'
@@ -213,6 +224,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/check'
     | '/enterprise'
     | '/_authenticated/app/call'
     | '/_authenticated/app/chat'
@@ -233,6 +245,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
+  CheckRoute: typeof CheckRoute
   EnterpriseRoute: typeof EnterpriseRoute
 }
 
@@ -257,6 +270,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/check': {
+      id: '/check'
+      path: '/check'
+      fullPath: '/check'
+      preLoaderRoute: typeof CheckRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/enterprise': {
@@ -399,8 +419,19 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
+  CheckRoute: CheckRoute,
   EnterpriseRoute: EnterpriseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
