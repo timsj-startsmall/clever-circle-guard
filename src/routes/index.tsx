@@ -74,7 +74,7 @@ function Landing() {
               For organisations
             </Link>
             <Link
-              to="/auth"
+              to="/check"
               className="inline-flex min-h-11 items-center rounded-2xl bg-primary px-5 text-sm font-bold text-primary-foreground shadow-soft transition-transform hover:-translate-y-0.5"
             >
               Get Started
