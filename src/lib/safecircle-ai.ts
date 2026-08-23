@@ -121,7 +121,7 @@ export function analyzeMessage(text: string): MessageAnalysis {
       : [
           "Don't reply to the message",
           "Verify independently using a number you already have",
-          risk === "high" ? "Call your bank on the number on your card" : "Check the sender's details carefully",
+          risk === "high" ? "Call your bank on the number on your card or use 159 from any phone" : "Check the sender's details carefully",
           "Let a trusted contact know",
         ];
 
