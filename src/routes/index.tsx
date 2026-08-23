@@ -101,7 +101,7 @@ function Landing() {
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
-                to="/auth"
+                to="/check"
                 className="inline-flex min-h-14 items-center justify-center gap-2 rounded-3xl bg-primary px-8 text-lg font-bold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5"
               >
                 Get Started <ArrowRight className="size-5" aria-hidden />
