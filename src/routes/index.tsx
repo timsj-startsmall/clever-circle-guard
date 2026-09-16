@@ -23,13 +23,13 @@ import heroImage from "@/assets/hero-safecircle.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SafeCircle — Stay Independent. Stay Protected." },
+      { title: "Circle of Trust — Stay Independent. Stay Protected." },
       {
         name: "description",
         content:
           "AI-powered scam detection for you and your family. Check messages, websites, calls and payment requests in plain English, with trusted family support.",
       },
-      { property: "og:title", content: "SafeCircle — Stay Independent. Stay Protected." },
+      { property: "og:title", content: "Circle of Trust — Stay Independent. Stay Protected." },
       {
         property: "og:description",
         content: "A calm second opinion whenever something feels off. AI scam protection for older adults and their families.",
@@ -50,7 +50,7 @@ const features = [
 
 const steps = [
   { number: "1", title: "Something arrives", body: "A text, a call, an email or a request for money that doesn't feel quite right." },
-  { number: "2", title: "Ask SafeCircle", body: "Paste it, photograph it, or just describe it. No jargon, no forms, no rush." },
+  { number: "2", title: "Ask Circle of Trust", body: "Paste it, photograph it, or just describe it. No jargon, no forms, no rush." },
   { number: "3", title: "Get a clear answer", body: "Plain English on what stands out, what it means, and exactly what to do next." },
   { number: "4", title: "Bring in family", body: "Share the check with a trusted contact who can reassure you in a moment." },
 ];
@@ -64,7 +64,7 @@ function Landing() {
             <span className="grid size-10 shrink-0 place-items-center rounded-2xl bg-primary text-primary-foreground" aria-hidden>
               <ShieldCheck className="size-6" />
             </span>
-            <span className="truncate font-display text-xl font-extrabold text-foreground">SafeCircle</span>
+            <span className="truncate font-display text-xl font-extrabold text-foreground">Circle of Trust</span>
           </div>
           <nav className="flex shrink-0 items-center gap-2">
             <Link
@@ -128,7 +128,7 @@ function Landing() {
 
         {/* Features */}
         <section className="mx-auto max-w-6xl px-4 py-12">
-          <h2 className="font-display text-3xl font-extrabold text-foreground sm:text-4xl">Six ways SafeCircle helps</h2>
+          <h2 className="font-display text-3xl font-extrabold text-foreground sm:text-4xl">Six ways Circle of Trust helps</h2>
           <p className="mt-2 max-w-2xl text-muted-foreground">Everything explained the way a patient friend would explain it.</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (
@@ -163,7 +163,7 @@ function Landing() {
 
         {/* Testimonials */}
         <section className="mx-auto max-w-6xl px-4 py-14">
-          <h2 className="font-display text-3xl font-extrabold text-foreground sm:text-4xl">People feel calmer with SafeCircle</h2>
+          <h2 className="font-display text-3xl font-extrabold text-foreground sm:text-4xl">People feel calmer with Circle of Trust</h2>
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
             {testimonials.map((item) => (
               <figure key={item.name} className="rounded-3xl border border-border bg-card p-6 shadow-soft">
@@ -242,7 +242,7 @@ function Landing() {
               <span className="grid size-10 place-items-center rounded-2xl bg-primary text-primary-foreground" aria-hidden>
                 <ShieldCheck className="size-6" />
               </span>
-              <span className="font-display text-xl font-extrabold text-foreground">SafeCircle</span>
+              <span className="font-display text-xl font-extrabold text-foreground">Circle of Trust</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
               A calm companion for staying independent and protected online.
@@ -268,7 +268,7 @@ function Landing() {
           </div>
         </div>
         <div className="border-t border-border px-4 py-5 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} SafeCircle. Prototype with sample data. SafeCircle explains risk — it never guarantees safety.
+           {new Date().getFullYear()} Circle of Trust. Prototype with sample data and is for development only. Circle of Trust explains risk — it never guarantees safety. Pink Pansy Labs.
         </div>
       </footer>
     </div>

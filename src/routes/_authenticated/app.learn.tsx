@@ -7,9 +7,9 @@ import { educationArticles } from "@/lib/sample-data";
 export const Route = createFileRoute("/_authenticated/app/learn")({
   head: () => ({
     meta: [
-      { title: "Scam education centre — SafeCircle" },
+      { title: "Scam education centre — Circle of Trust" },
       { name: "description", content: "Short, friendly guides to banking, romance, delivery, investment, phone, QR, WhatsApp and AI voice scams." },
-      { property: "og:title", content: "Scam education centre — SafeCircle" },
+      { property: "og:title", content: "Scam education centre — Circle of Trust" },
       { property: "og:description", content: "Two-minute guides to the scams doing the rounds." },
     ],
   }),

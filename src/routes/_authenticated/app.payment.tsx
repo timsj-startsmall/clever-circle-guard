@@ -10,9 +10,9 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/_authenticated/app/payment")({
   head: () => ({
     meta: [
-      { title: "Payment safety check — SafeCircle" },
+      { title: "Payment safety check — Circle of Trust" },
       { name: "description", content: "Five simple questions before you send money, with a clear recommendation and who to call." },
-      { property: "og:title", content: "Payment safety check — SafeCircle" },
+      { property: "og:title", content: "Payment safety check — Circle of Trust" },
       { property: "og:description", content: "Please pause before making a payment you weren't expecting." },
     ],
   }),

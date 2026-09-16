@@ -13,9 +13,9 @@ import {
 export const Route = createFileRoute("/enterprise")({
   head: () => ({
     meta: [
-      { title: "SafeCircle for banks, insurers and telecoms" },
+      { title: "Circle of Trust for banks, insurers and telecoms" },
       { name: "description", content: "Anonymised analytics showing scam attempts detected, customer money protected and measurable fraud reduction." },
-      { property: "og:title", content: "SafeCircle for banks, insurers and telecoms" },
+      { property: "og:title", content: "Circle of Trust for banks, insurers and telecoms" },
       { property: "og:description", content: "Measurable fraud reduction and customer protection, in one dashboard." },
     ],
   }),

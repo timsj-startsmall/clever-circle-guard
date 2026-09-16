@@ -11,10 +11,10 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/_authenticated/app/settings")({
   head: () => ({
     meta: [
-      { title: "Settings — SafeCircle" },
+      { title: "Settings — Circle of Trust" },
       { name: "description", content: "Manage trusted contacts, notifications and accessibility options like large text, high contrast and read aloud." },
-      { property: "og:title", content: "Settings — SafeCircle" },
-      { property: "og:description", content: "Make SafeCircle comfortable for you." },
+      { property: "og:title", content: "Settings — Circle of Trust" },
+      { property: "og:description", content: "Make Circle of Trust comfortable for you." },
     ],
   }),
   component: Settings,
@@ -28,11 +28,11 @@ function Settings() {
     { key: "largeText" as const, label: "Large text", detail: "Bigger words across the whole app" },
     { key: "highContrast" as const, label: "High contrast", detail: "Stronger colours for easier reading" },
     { key: "darkMode" as const, label: "Dark mode", detail: "Softer on the eyes at night" },
-    { key: "readAloud" as const, label: "Read results aloud", detail: "SafeCircle speaks the answer to you" },
+    { key: "readAloud" as const, label: "Read results aloud", detail: "Circle of Trust speaks the answer to you" },
   ];
 
   return (
-    <AppShell title="Settings" subtitle="Make SafeCircle comfortable for you">
+    <AppShell title="Settings" subtitle="Make Circle of Trust comfortable for you">
       <SoftCard>
         <h2 className="font-display text-lg font-bold text-foreground">Accessibility</h2>
         <ul className="mt-3 divide-y divide-border">

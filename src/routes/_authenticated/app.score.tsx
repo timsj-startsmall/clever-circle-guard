@@ -6,9 +6,9 @@ import { scoreHistory, shieldScore } from "@/lib/sample-data";
 export const Route = createFileRoute("/_authenticated/app/score")({
   head: () => ({
     meta: [
-      { title: "Your Scam Shield Score — SafeCircle" },
+      { title: "Your Scam Shield Score — Circle of Trust" },
       { name: "description", content: "See how your everyday safety habits are going, with gentle suggestions and your score over time." },
-      { property: "og:title", content: "Your Scam Shield Score — SafeCircle" },
+      { property: "og:title", content: "Your Scam Shield Score — Circle of Trust" },
       { property: "og:description", content: "A digital wellbeing score for staying safe online." },
     ],
   }),

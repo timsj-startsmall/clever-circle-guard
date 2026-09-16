@@ -1,5 +1,5 @@
 /**
- * Realistic sample data used across the SafeCircle prototype so every screen
+ * Realistic sample data used across the Circle of Trust prototype so every screen
  * demonstrates well. Replace with live data when the relevant services land.
  */
 
@@ -326,17 +326,17 @@ export const enterpriseSuccess = [
 ];
 
 export const testimonials = [
-  { quote: "I nearly paid a parcel fee that wasn't real. SafeCircle told me why it looked wrong in words I actually understood.", name: "Margaret, 74", place: "Sheffield" },
+  { quote: "I nearly paid a parcel fee that wasn't real. Circle of Trust told me why it looked wrong in words I actually understood.", name: "Margaret, 74", place: "Sheffield" },
   { quote: "Dad rings me less worried now. I can see he's checked something and reassure him in seconds.", name: "Sarah", place: "Daughter, Leeds" },
   { quote: "It doesn't treat you like you're daft. It just explains things and lets you decide.", name: "Arthur, 81", place: "Cardiff" },
 ];
 
 export const faqs = [
-  { q: "Does SafeCircle tell me if something is definitely safe?", a: "No — and we think that's important. Nobody can promise that. SafeCircle explains what looks unusual, what looks normal, and what we'd do next, so you stay in control of the decision." },
+  { q: "Does Circle of Trust tell me if something is definitely safe?", a: "No — and we think that's important. Nobody can promise that. Circle of Trust explains what looks unusual, what looks normal, and what we'd do next, so you stay in control of the decision." },
   { q: "Do my family see everything I do?", a: "Only what you choose to share. Trusted contacts see the checks you send them and any alerts you turn on. Your messages stay yours." },
-  { q: "Do I need to be good with technology?", a: "Not at all. Big buttons, plain English and no jargon. If you can take a photo or paste a message, you can use SafeCircle." },
+  { q: "Do I need to be good with technology?", a: "Not at all. Big buttons, plain English and no jargon. If you can take a photo or paste a message, you can use Circle of Trust." },
   { q: "What does it cost?", a: "The core checks are free forever. Premium Family adds alerts, family dashboards and unlimited history for £7.99 a month for the whole family." },
-  { q: "What happens if I've already sent money?", a: "SafeCircle shows you exactly who to ring first, in order, and can notify your trusted contact at the same time. Acting quickly gives the best chance of recovery." },
+  { q: "What happens if I've already sent money?", a: "Circle of Trust shows you exactly who to ring first, in order, and can notify your trusted contact at the same time. Acting quickly gives the best chance of recovery." },
 ];
 
 export const pricing = [

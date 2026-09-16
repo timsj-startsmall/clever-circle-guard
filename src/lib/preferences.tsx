@@ -20,7 +20,7 @@ const defaults: Preferences = {
   alertsWeekly: true,
 };
 
-const STORAGE_KEY = "safecircle:preferences";
+const STORAGE_KEY = "circle-of-trust:preferences";
 
 const PreferencesContext = createContext<{
   prefs: Preferences;

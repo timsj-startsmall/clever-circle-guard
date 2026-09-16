@@ -11,9 +11,9 @@ import { Label } from "@/components/ui/label";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Sign in to SafeCircle" },
-      { name: "description", content: "Create your SafeCircle account to protect yourself, or to help a family member stay safe from scams." },
-      { property: "og:title", content: "Sign in to SafeCircle" },
+      { title: "Sign in to Circle of Trust" },
+      { name: "description", content: "Create your Circle of Trust account to protect yourself, or to help a family member stay safe from scams." },
+      { property: "og:title", content: "Sign in to Circle of Trust" },
       { property: "og:description", content: "Protect yourself, or help a family member stay safe from scams." },
     ],
   }),
@@ -80,7 +80,7 @@ function AuthPage() {
   const handleSocial = async (provider: "google" | "apple") => {
     setBusy(true);
     try {
-      window.localStorage.setItem("safecircle:role", role);
+      window.localStorage.setItem("circle-of-trust:role", role);
       const result = await lovable.auth.signInWithOAuth(provider, { redirect_uri: window.location.origin });
       if (result.error) {
         toast.error("We couldn't sign you in just then. Please try again.");
@@ -100,7 +100,7 @@ function AuthPage() {
           <span className="grid size-11 place-items-center rounded-2xl bg-primary text-primary-foreground" aria-hidden>
             <ShieldCheck className="size-6" />
           </span>
-          <span className="font-display text-2xl font-extrabold text-foreground">SafeCircle</span>
+          <span className="font-display text-2xl font-extrabold text-foreground">Circle of Trust</span>
         </Link>
 
         <h1 className="mt-8 text-center font-display text-3xl font-extrabold text-foreground">
@@ -164,7 +164,7 @@ function AuthPage() {
         </form>
 
         <p className="mt-5 text-center text-sm text-muted-foreground">
-          {mode === "signup" ? "Already with us?" : "New to SafeCircle?"}{" "}
+          {mode === "signup" ? "Already with us?" : "New to Circle of Trust?"}{" "}
           <button type="button" className="font-bold text-primary underline-offset-4 hover:underline" onClick={() => setMode(mode === "signup" ? "signin" : "signup")}>
             {mode === "signup" ? "Sign in instead" : "Create an account"}
           </button>

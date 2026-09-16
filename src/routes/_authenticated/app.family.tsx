@@ -9,9 +9,9 @@ import { recentActivity, shieldScore } from "@/lib/sample-data";
 export const Route = createFileRoute("/_authenticated/app/family")({
   head: () => ({
     meta: [
-      { title: "Family dashboard — SafeCircle" },
+      { title: "Family dashboard — Circle of Trust" },
       { name: "description", content: "See recent checks, alerts and weekly summaries for the people you look out for." },
-      { property: "og:title", content: "Family dashboard — SafeCircle" },
+      { property: "og:title", content: "Family dashboard — Circle of Trust" },
       { property: "og:description", content: "Peace of mind for families, without looking over anyone's shoulder." },
     ],
   }),

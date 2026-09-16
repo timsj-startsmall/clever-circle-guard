@@ -7,9 +7,9 @@ import { sampleContacts } from "@/lib/sample-data";
 export const Route = createFileRoute("/_authenticated/app/trusted")({
   head: () => ({
     meta: [
-      { title: "Ask someone I trust — SafeCircle" },
+      { title: "Ask someone I trust — Circle of Trust" },
       { name: "description", content: "Share a check with a family member or friend, or give them a ring straight away." },
-      { property: "og:title", content: "Ask someone I trust — SafeCircle" },
+      { property: "og:title", content: "Ask someone I trust — Circle of Trust" },
       { property: "og:description", content: "Your trusted circle, one tap away." },
     ],
   }),

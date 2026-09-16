@@ -1,4 +1,4 @@
-# SafeCircle — AI Scam Prevention Companion
+# Circle of Trust — AI Scam Prevention Companion
 
 A calm, mobile-first prototype: soft blues/greens, white space, rounded cards, large touch targets, WCAG AA contrast. No fear-based language; risk is always explained in plain English with next steps, never "this is safe".
 

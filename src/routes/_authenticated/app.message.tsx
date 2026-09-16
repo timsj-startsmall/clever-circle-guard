@@ -13,9 +13,9 @@ import { useSpeak } from "@/lib/preferences";
 export const Route = createFileRoute("/_authenticated/app/message")({
   head: () => ({
     meta: [
-      { title: "Check a message — SafeCircle" },
-      { name: "description", content: "Paste a suspicious text or upload a screenshot and SafeCircle explains what looks wrong and what to do next." },
-      { property: "og:title", content: "Check a message — SafeCircle" },
+      { title: "Check a message — Circle of Trust" },
+      { name: "description", content: "Paste a suspicious text or upload a screenshot and Circle of Trust explains what looks wrong and what to do next." },
+      { property: "og:title", content: "Check a message — Circle of Trust" },
       { property: "og:description", content: "A plain-English second opinion on any suspicious message." },
     ],
   }),

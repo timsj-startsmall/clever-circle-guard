@@ -9,9 +9,9 @@ import { askAssistant } from "@/lib/safecircle-ai";
 export const Route = createFileRoute("/_authenticated/app/chat")({
   head: () => ({
     meta: [
-      { title: "Ask SafeCircle — AI assistant" },
+      { title: "Ask Circle of Trust — AI assistant" },
       { name: "description", content: "Ask anything about a message, caller or payment request and get a calm answer in plain English." },
-      { property: "og:title", content: "Ask SafeCircle — AI assistant" },
+      { property: "og:title", content: "Ask Circle of Trust — AI assistant" },
       { property: "og:description", content: "A friendly assistant that explains things without jargon." },
     ],
   }),
@@ -40,7 +40,7 @@ function ChatAssistant() {
   };
 
   return (
-    <AppShell title="Ask SafeCircle" subtitle="A friendly second opinion, any time">
+    <AppShell title="Ask Circle of Trust" subtitle="A friendly second opinion, any time">
       <div className="space-y-3">
         {messages.map((message) => (
           <div

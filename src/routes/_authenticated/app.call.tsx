@@ -9,9 +9,9 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/_authenticated/app/call")({
   head: () => ({
     meta: [
-      { title: "I received a phone call — SafeCircle" },
-      { name: "description", content: "Tell SafeCircle what the caller said and get a calm, plain-English view on whether it sounds like a scam." },
-      { property: "og:title", content: "I received a phone call — SafeCircle" },
+      { title: "I received a phone call — Circle of Trust" },
+      { name: "description", content: "Tell Circle of Trust what the caller said and get a calm, plain-English view on whether it sounds like a scam." },
+      { property: "og:title", content: "I received a phone call — Circle of Trust" },
       { property: "og:description", content: "A few gentle questions about the call, then a clear answer." },
     ],
   }),

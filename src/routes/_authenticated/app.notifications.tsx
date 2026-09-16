@@ -6,9 +6,9 @@ import { notifications } from "@/lib/sample-data";
 export const Route = createFileRoute("/_authenticated/app/notifications")({
   head: () => ({
     meta: [
-      { title: "Notifications — SafeCircle" },
+      { title: "Notifications — Circle of Trust" },
       { name: "description", content: "Requests for help, high-risk payment alerts and recent website checks, all in one calm list." },
-      { property: "og:title", content: "Notifications — SafeCircle" },
+      { property: "og:title", content: "Notifications — Circle of Trust" },
       { property: "og:description", content: "Everything that needs a moment of your attention." },
     ],
   }),

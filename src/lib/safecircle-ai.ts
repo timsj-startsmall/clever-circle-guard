@@ -1,5 +1,5 @@
 /**
- * SafeCircle analysis service.
+ * Circle of Trust analysis service.
  *
  * All analysis here is deterministic mock logic for the prototype. Each export
  * is a placeholder API boundary so a real provider can be dropped in later:
@@ -9,7 +9,7 @@
  *   assessPayment  -> bank fraud / APP scam scoring systems
  *   askAssistant   -> LLM chat
  *
- * SafeCircle never declares something definitively safe. The lowest outcome is
+ * Circle of Trust never declares something definitively safe. The lowest outcome is
  * "no clear warning signs" together with sensible next steps.
  */
 

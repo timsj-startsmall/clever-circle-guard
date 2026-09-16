@@ -1,16 +1,16 @@
-# Safe Circle Family
+# Circle of Trust Family
 
-Build a modern, mobile-first web application called SafeCircle – an AI-powered scam prevention platform designed to help older adults stay safe online while giving trusted family members peace of mind.
+Build a modern, mobile-first web application called Circle of Trust – an AI-powered scam prevention platform designed to help older adults stay safe online while giving trusted family members peace of mind.
 
 The design should feel reassuring, simple and friendly rather than technical. Think Apple Health, Monzo and Calm combined. Large buttons, high contrast, accessibility-first, minimal text and clear visual feedback.
 
 Overall Goal
 
-SafeCircle acts as a “second opinion” whenever someone receives a suspicious message, email, phone call or payment request.
+Circle of Trust acts as a “second opinion” whenever someone receives a suspicious message, email, phone call or payment request.
 
 The app should never state that something is definitely safe. Instead it explains risk in plain English and recommends sensible next steps.
 
-Use soft blues, greens and white with subtle illustrations and rounded cards.
+Use subtle pinks, warm neutrals and white with subtle illustrations and rounded cards.
 
 
 
@@ -395,7 +395,7 @@ Enable additional protection features.
 
 Continue checking unexpected payment requests before sending money.
 
-Use positive reinforcement to encourage safer digital habits rather than fear-based messaging. The score should evolve over time, making SafeCircle feel like a digital wellbeing companion instead of a one-time scam checker.
+Use positive reinforcement to encourage safer digital habits rather than fear-based messaging. The score should evolve over time, making Circle of Trust feel like a digital wellbeing companion instead of a one-time scam checker.
 
 Historical Trends
 
@@ -487,13 +487,13 @@ Region.
 
 Risk level.
 
-The dashboard should look polished enough for executive presentations and demonstrate the tangible value SafeCircle could provide to banks, insurers, telecom companies and government organisations through reduced fraud, improved customer protection and measurable financial savings.
+The dashboard should look polished enough for executive presentations and demonstrate the tangible value Circle of Trust could provide to banks, insurers, telecom companies and government organisations through reduced fraud, improved customer protection and measurable financial savings.
 
 
 
 Product Vision
 
-SafeCircle should not feel like a cybersecurity application.
+Circle of Trust should not feel like a cybersecurity application.
 
 It should feel like a trusted companion that empowers people to stay independent, confident and protected online.
 

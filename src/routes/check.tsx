@@ -12,13 +12,13 @@ import { useSpeak } from "@/lib/preferences";
 export const Route = createFileRoute("/check")({
   head: () => ({
     meta: [
-      { title: "Check a message free — SafeCircle" },
+      { title: "Check a message free — Circle of Trust" },
       {
         name: "description",
         content:
           "Paste a suspicious text or upload a screenshot and get a plain-English second opinion in seconds. No account needed.",
       },
-      { property: "og:title", content: "Check a message free — SafeCircle" },
+      { property: "og:title", content: "Check a message free — Circle of Trust" },
       {
         property: "og:description",
         content: "A calm, plain-English second opinion on any suspicious message. No sign-in required.",
@@ -71,7 +71,7 @@ function PublicMessageScanner() {
             <span className="grid size-10 shrink-0 place-items-center rounded-2xl bg-primary text-primary-foreground" aria-hidden>
               <ShieldCheck className="size-6" />
             </span>
-            <span className="truncate font-display text-xl font-extrabold text-foreground">SafeCircle</span>
+            <span className="truncate font-display text-xl font-extrabold text-foreground">Circle of Trust</span>
           </Link>
           <Link
             to="/auth"

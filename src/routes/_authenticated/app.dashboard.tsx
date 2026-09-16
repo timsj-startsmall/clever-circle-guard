@@ -22,9 +22,9 @@ import type { Risk } from "@/lib/safecircle-ai";
 export const Route = createFileRoute("/_authenticated/app/dashboard")({
   head: () => ({
     meta: [
-      { title: "Your SafeCircle home" },
+      { title: "Your Circle of Trust home" },
       { name: "description", content: "Check a message, website, phone call or payment request, and see your recent safety activity." },
-      { property: "og:title", content: "Your SafeCircle home" },
+      { property: "og:title", content: "Your Circle of Trust home" },
       { property: "og:description", content: "Check anything that feels off, in a few taps." },
     ],
   }),

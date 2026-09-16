@@ -80,11 +80,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SafeCircle — AI scam protection for you and your family" },
+      { title: "Circle of Trust — AI scam protection for you and your family" },
       {
         name: "description",
         content:
-          "SafeCircle is a calm second opinion on suspicious messages, calls, websites and payment requests, with trusted family support.",
+          "Circle of Trust is a calm second opinion on suspicious messages, calls, websites and payment requests, with trusted family support.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -134,7 +134,7 @@ function RootComponent() {
       });
       return () => data.subscription.unsubscribe();
     } catch (error) {
-      console.error("[SafeCircle] Auth listener unavailable:", error);
+      console.error("[Circle of Trust] Auth listener unavailable:", error);
       return;
     }
   }, [router, queryClient]);

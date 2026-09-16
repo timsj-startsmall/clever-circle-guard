@@ -12,9 +12,9 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/_authenticated/app/website")({
   head: () => ({
     meta: [
-      { title: "Check a website — SafeCircle" },
+      { title: "Check a website — Circle of Trust" },
       { name: "description", content: "Paste a web address and see its age, security, reputation and how closely it copies a real brand." },
-      { property: "og:title", content: "Check a website — SafeCircle" },
+      { property: "og:title", content: "Check a website — Circle of Trust" },
       { property: "og:description", content: "Is this web address genuine? A plain-English check." },
     ],
   }),
