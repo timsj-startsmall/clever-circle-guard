@@ -183,7 +183,7 @@ function Landing() {
             <h2 className="font-display text-3xl font-extrabold text-foreground sm:text-4xl">Simple pricing</h2>
             <p className="mt-2 text-muted-foreground">One plan covers the whole family. Cancel any time.</p>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
-              {pricing.map((plan) => (
+              {pricing.filter((plan) => !plan.featured).map((plan) => (
                 <article
                   key={plan.name}
                   className={`rounded-3xl border p-6 shadow-soft ${plan.featured ? "border-primary bg-card ring-2 ring-primary/25" : "border-border bg-card"}`}
